@@ -69,7 +69,7 @@ st.markdown(" ")
 
 ####### Functions to import data and plot graphs and tables ###################################################################################
 
-@st.cache_data
+#@st.cache_data
 def data(file):
     df = pd.read_csv(file)
     return df
@@ -108,13 +108,13 @@ def colorScale(x):
 
 
 ## Simulate match using Poisson Distribution Model
-@st.cache_data
+#@st.cache_data
 def simulate_match(home_goals_avg, away_goals_avg, max_goals=10):
     team_pred = [[poisson.pmf(i, team_avg) for i in range(0, max_goals+1)] for team_avg in [home_goals_avg, away_goals_avg]]
     return(np.outer(np.array(team_pred[0]), np.array(team_pred[1])))
 
 
-@st.cache_data
+#@st.cache_data
 def matchProb(homePower, awayPower):
     matrix = simulate_match(homePower,awayPower)
     probHomeWin = np.sum(np.tril(matrix, -1))
@@ -126,7 +126,7 @@ def matchProb(homePower, awayPower):
 
 
 
-@st.cache_data
+#@st.cache_data
 def tables(team, previousGames, targetTeam):
     
     team = team[-previousGames:]
@@ -184,7 +184,7 @@ def tables(team, previousGames, targetTeam):
 
 
 
-@st.cache_data
+#@st.cache_data
 def teamTables(teamiFPL):
     
     teamiFPL['strength'] = teamiFPL.apply(lambda x: round((x['strength']),2), axis=1)
@@ -219,7 +219,7 @@ def teamTables(teamiFPL):
 
 
 
-@st.cache_data
+#@st.cache_data
 def playerTables(filter):
       
     name = filter['web_name'].tolist()
@@ -259,7 +259,7 @@ def playerTables(filter):
 
 
 
-@st.cache_data
+#@st.cache_data
 def playerStatistics(playerGames, games):
     
     playerGames = playerGames[-games:]
@@ -300,7 +300,7 @@ def playerStatistics(playerGames, games):
     return fig22
 
 
-@st.cache_data
+#@st.cache_data
 def stats(homeTeam, target, games, graph, num):
     
     homeTeam = homeTeam[-games:]
@@ -455,7 +455,7 @@ def stats(homeTeam, target, games, graph, num):
 
 
 #Function to display FPL team data
-@st.cache_data
+#@st.cache_data
 def teamFpl(elements, team):
     
     
@@ -468,13 +468,13 @@ def teamFpl(elements, team):
 
 
 # Function to calculate the Probability
-@st.cache_data
+#@st.cache_data
 def Probability(rating1, rating2):
     return 1.0 * 1.0 / (1 + 1.0 * math.pow(10, 1.0 * (rating1 - rating2) / 400))
 
 
 # Function to get team lineups
-@st.cache_data
+#@st.cache_data
 def lineup(elements, team):
 
     df = elements.loc[(elements['team'] == team) & (elements['statusFull'] == 'avail')]
@@ -487,7 +487,7 @@ def lineup(elements, team):
 
 
 # Function for points
-@st.cache_data
+#@st.cache_data
 def teamStrength(elements, team, line):
     
     df = elements.loc[(elements['team'] == team)]
@@ -500,7 +500,7 @@ def teamStrength(elements, team, line):
     return score
 
 
-@st.cache_data
+#@st.cache_data
 def filterElements(elements, team):
     
     df = elements.loc[(elements['team'] == team)]
@@ -510,7 +510,7 @@ def filterElements(elements, team):
     return df
 
 
-@st.cache_data
+#@st.cache_data
 def filterPlayer(history, name):
     
     df = history.loc[(history['name'] == name)]
@@ -519,7 +519,7 @@ def filterPlayer(history, name):
 
 
 
-@st.cache_data
+#@st.cache_data
 def filterNames(elements, team):
     
     df = elements.loc[(elements['team'] == team)]
@@ -530,7 +530,7 @@ def filterNames(elements, team):
 
 
 
-@st.cache_data
+#@st.cache_data
 def statshead2head(Teams, teama, teamb, games, graph):
     
     Teams = Teams[-games:]
@@ -711,7 +711,7 @@ def playerRank(elements, category, model):
     return df
 
 
-@st.cache_data
+#@st.cache_data
 def playerRankTables(filter):
    
     
@@ -756,7 +756,7 @@ def playerRankTables(filter):
     return fig
 
 
-@st.cache_data
+#@st.cache_data
 def playerScatter(data):
 
     fig = go.Figure(data=go.Scatter(x=data['now_cost'],
@@ -779,7 +779,7 @@ def playerScatter(data):
     return fig
 
 
-@st.cache_data
+#@st.cache_data
 def playerScatterAll(data, model):   
     
     if (model == 'zScore'):
@@ -883,7 +883,7 @@ def playerScatterAll(data, model):
 
 
 
-@st.cache_data
+#@st.cache_data
 def averageScatter(data, model):   
     
     
@@ -1014,7 +1014,7 @@ def averageScatter(data, model):
     return fig
 
 
-@st.cache_data
+#@st.cache_data
 def teamScores(data, teams):   
     
     scoresList = []
@@ -1055,7 +1055,7 @@ def teamScores(data, teams):
     return fig
 
 
-@st.cache_data
+#@st.cache_data
 def targetTeamScatter(data, targetTeam):   
     
     data = data.loc[(data['team'] == targetTeam)]
@@ -1133,7 +1133,7 @@ def targetTeamScatter(data, targetTeam):
     return fig
 
 
-@st.cache_data
+#@st.cache_data
 def HeadToHeadScatter(data, home, away):   
      
     x0 = data['now_cost'].loc[(data['team'] == home)]
