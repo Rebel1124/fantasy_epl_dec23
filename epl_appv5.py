@@ -1289,25 +1289,31 @@ colu, colv = st.columns([1,1])
 cols.plotly_chart(val1[1], use_container_width=True)
 colt.plotly_chart(val2[1], use_container_width=True)
 
-st.markdown("<h4 style='text-align: left; color: purple; padding-left: 0px; font-size: 40px'><b>Head-to-Head<b></h4>", unsafe_allow_html=True)
-test = tables(head2head_merged,games,teama) 
+#st.markdown("<h4 style='text-align: left; color: purple; padding-left: 0px; font-size: 40px'><b>Head-to-Head<b></h4>", unsafe_allow_html=True)
 
-coli, colo = st.columns([1,1])
-test2 = statshead2head(head2head_merged, teama, teamb, games, graph_value)
-coli.plotly_chart(test2[0], use_container_width=True)
-colo.plotly_chart(test2[1], use_container_width=True)
-
-test
-
-
-headToheadScatter = HeadToHeadScatter(elements, home, away)
-
-displayHeadToHead = st.checkbox('Show '+home+" versus "+away+" Players Distribution")
-
-if displayHeadToHead:
-    st.markdown("<h3 style='text-align: left; color: #008080; padding-left: 0px; font-size: 20px'><b>"+home+" versus "+away+" Players Scatter Plot<b></h3>", unsafe_allow_html=True)
-    st.write(headToheadScatter)
+try:
     
+    test = tables(head2head_merged,games,teama) 
+    st.markdown("<h4 style='text-align: left; color: purple; padding-left: 0px; font-size: 40px'><b>Head-to-Head<b></h4>", unsafe_allow_html=True)
+
+    coli, colo = st.columns([1,1])
+
+    test2 = statshead2head(head2head_merged, teama, teamb, games, graph_value)
+    coli.plotly_chart(test2[0], use_container_width=True)
+    colo.plotly_chart(test2[1], use_container_width=True)
+
+    test
+
+
+    headToheadScatter = HeadToHeadScatter(elements, home, away)
+
+    displayHeadToHead = st.checkbox('Show '+home+" versus "+away+" Players Distribution")
+
+    if displayHeadToHead:
+        st.markdown("<h3 style='text-align: left; color: #008080; padding-left: 0px; font-size: 20px'><b>"+home+" versus "+away+" Players Scatter Plot<b></h3>", unsafe_allow_html=True)
+        st.write(headToheadScatter)
+except:
+    pass    
    
 homeFPL = teamFpl(elements, home)
 awayFPL = teamFpl(elements, away)
